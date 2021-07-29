@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "build:solidity": "node ethereum/compile.js",
-    "deploy:contracts": "node ethereum/deploy.js"
+    "deploy:contracts": "node ethereum/deploy.js",
+    "dev": "next dev"
   },
   "dependencies": {
     "fs-extra": "^10.0.0",
