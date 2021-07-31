@@ -10,11 +10,39 @@ const RequestNew = ({ address }) => {
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
   const [recipient, setRecipient] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
+  const handleOnSubmit = async (event) => {
+    event.preventDefault();
+
+    setLoading(true);
+    setErrorMessage('');
+
+    const campaign = createCampaignInstance(address);
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods
+        .createRequest(description, web3.utils.toWei(value, 'ether'), recipient)
+        .send({ from: accounts[0] });
+      router.push(`/campaigns/${address}/requests`);
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
+
+    setLoading(false);
+  };
 
   return (
     <Layout>
+      <Link href={`/campaigns/${address}/requests`}>
+        <a>Back</a>
+      </Link>
       <h3>Create a Request</h3>
-      <Form>
+      <Form onSubmit={handleOnSubmit} error={!!errorMessage}>
         <Form.Field>
           <label>Description</label>
           <Input
@@ -39,7 +67,10 @@ const RequestNew = ({ address }) => {
           />
         </Form.Field>
 
-        <Button primary>Create!</Button>
+        <Message error header="Oops!" content={errorMessage} />
+        <Button primary loading={loading} disabled={loading}>
+          Create!
+        </Button>
       </Form>
     </Layout>
   );
