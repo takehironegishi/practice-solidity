@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Menu } from 'semantic-ui-react';
 
 export const Header = () => (
-  <Menu style={{ marginTop: '10px' }}>
+  <Menu style={{ marginTop: '24px' }}>
     <Link href="/">
       <a className="item">CrowdCoin</a>
     </Link>
