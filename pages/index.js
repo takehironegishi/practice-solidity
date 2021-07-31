@@ -11,6 +11,7 @@ const CampaignIndex = ({ campaigns }) => {
         <a>View Campaign</a>
       </Link>
     ),
+    style: { overflowWrap: 'break-word' },
     fluid: true,
   }));
 
