@@ -12,7 +12,9 @@ const RequestIndex = ({ address, requestsCount, approversCount, requests }) => {
       <h3>Requests</h3>
       <Link href={`/campaigns/${address}/requests/new`}>
         <a>
-          <Button primary>Add Request</Button>
+          <Button primary floated="right" style={{ marginBottom: '16px' }}>
+            Add Request
+          </Button>
         </a>
       </Link>
       <Table>
@@ -40,6 +42,9 @@ const RequestIndex = ({ address, requestsCount, approversCount, requests }) => {
           ))}
         </Body>
       </Table>
+      <div>{`Found ${requestsCount} ${
+        requestsCount === 1 ? 'request' : 'requests'
+      }`}</div>
     </Layout>
   );
 };
