@@ -7,7 +7,7 @@ const CampaignIndex = ({ campaigns }) => {
   const items = campaigns.map((address) => ({
     header: address,
     description: (
-      <Link href="/campaigns/[contract_address]" as={`/campaigns/${address}`}>
+      <Link href={`/campaigns/${address}`}>
         <a>View Campaign</a>
       </Link>
     ),
